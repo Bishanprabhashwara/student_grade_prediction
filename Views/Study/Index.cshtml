@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplication1.Models.StudySession>
+
+@{ ViewBag.Title = "Study Sessions";
+    var subjects = ViewBag.Subjects as List<WebApplication1.Models.Subject>;
+    var breaks = ViewBag.Breaks as List<WebApplication1.Models.Break>; }
+
+<h2>Study Sessions</h2>
+
+<p>
+    @Html.ActionLink("Add New Study Session", "AddStudySession")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EndTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        var subjectName = subjects != null && subjects.Any() ? subjects.FirstOrDefault(s => s.Id == item.SubjectId)?.Name : "N/A";
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SubjectId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StartTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EndTime)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditStudySession", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "DeleteStudySession", new { id = item.Id })
+    </td>
+</tr>
+}
+</table>
+
+<h2>Breaks</h2>
+<p>
+    @Html.ActionLink("Break", "Index", "Breaks")
+</p>
+
+
+<h2>WeeklyProgress</h2>
+<p>
+    @Html.ActionLink("Weekly Progress", "WeeklyProgress")
+</p>
+
+<h2>Predicted Academic Status</h2>
+<p>
+    <!-- Example link to PredictedAcademicStatus -->
+    @Html.ActionLink("Predicted Academic Status", "PredictedAcademicStatus", "Study")
+
+</p>

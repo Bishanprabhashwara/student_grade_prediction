@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Predicted Academic Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Predicted Academic Status</h2>
+
+@if (ViewBag.PredictedGrade != null)
+{
+    <p>Predicted Grade: @ViewBag.PredictedGrade</p>
+    <p>Your active study hours this week: <strong>@ViewBag.ActiveHours</strong> hours</p>
+}
+else
+{
+    <p>No prediction available.</p>
+}
